@@ -34,7 +34,9 @@ export default function Settings() {
 			rules.push({
 				name: newRule,
 				match: "",
-				replace: ""
+				flags: "gi",
+				replace: "",
+				regex: false
 			})
 			setNewRule("")
 

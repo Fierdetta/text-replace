@@ -5,7 +5,7 @@ import { Rule } from "../../def";
 
 // Components
 const { ScrollView } = General;
-const { FormSection, FormInput, FormDivider } = Forms;
+const { FormSection, FormInput, FormDivider, FormSwitchRow } = Forms;
 
 export default function EditRule({ ruleIndex }) {
 	let rule = storage.rules[ruleIndex] as Rule;
@@ -20,19 +20,37 @@ export default function EditRule({ ruleIndex }) {
 					placeholder="New rule"
 					title="Name"
 				/>
-				<FormDivider />
+			</FormSection>
+			<FormSection>
 				<FormInput
 					value={rule.match}
 					onChange={(v: string) => rule.match = v}
 					placeholder="foo"
 					title="Match"
 				/>
+				{rule.regex && <>
+					<FormDivider />
+					<FormInput
+						title="Flags"
+						placeholder="gi"
+						value={rule.flags}
+						onChange={(v: string) => rule.flags = v}
+					/>
+				</>}
 				<FormDivider />
 				<FormInput
 					value={rule.replace}
 					onChange={(v: string) => rule.replace = v}
 					placeholder="bar"
 					title="Replace with"
+				/>
+			</FormSection>
+			<FormSection>
+				<FormSwitchRow
+					label="Regular expression"
+					subLabel="Turn on if your rule is a regular expression"
+					value={rule.regex}
+					onValueChange={(v: boolean) => rule.regex = v}
 				/>
 			</FormSection>
 		</ScrollView>
