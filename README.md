@@ -1,3 +1,3 @@
 # Text Replace
 
-FIXME
+Generic text replacement plugin
