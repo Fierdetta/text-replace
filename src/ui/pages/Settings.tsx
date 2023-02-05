@@ -32,7 +32,7 @@ export default function Settings() {
 	const addRuleCallback = () => {
 		if (newRule) {
 			rules.push({
-				name: newRule,
+				name: newRule.trim(),
 				match: "",
 				flags: "gi",
 				replace: "",
