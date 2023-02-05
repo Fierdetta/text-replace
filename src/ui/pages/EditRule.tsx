@@ -3,6 +3,7 @@ import { useProxy } from "@vendetta/storage";
 import { Forms, General } from "@vendetta/ui/components";
 import { Rule } from "../../def";
 
+// Components
 const { ScrollView } = General;
 const { FormSection, FormInput, FormDivider } = Forms;
 
