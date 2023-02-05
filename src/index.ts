@@ -1,4 +1,5 @@
 import { storage } from "@vendetta/plugin";
+import patchMessageLongPressActionSheet from "./patches/MessageLongPressActionSheet";
 import patchSendMessage from "./patches/sendMessage";
 import Settings from "./ui/pages/Settings";
 
@@ -8,7 +9,8 @@ export default {
     onLoad: () => {
         storage.rules ??= [];
         patches = [
-            patchSendMessage()
+            patchSendMessage(),
+            patchMessageLongPressActionSheet()
         ];
     },
     onUnload: () => {
