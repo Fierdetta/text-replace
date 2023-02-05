@@ -1,0 +1,14 @@
+{
+    "name": "Text Replace",
+    "description": "FIXME",
+    "authors": [
+        {
+            "name": "Fiery",
+            "id": "890228870559698955"
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "ic_message_edit"
+    }
+}
