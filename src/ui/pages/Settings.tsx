@@ -4,11 +4,12 @@ import { useProxy } from "@vendetta/storage";
 import { Forms, General } from "@vendetta/ui/components";
 import { Rule } from "../../def";
 import AddRuleButton from "../components/AddRuleButton";
+import RuleRow from "../components/RuleRow";
 import EditRule from "./EditRule";
 
 // Components
 const { ScrollView, TextInput } = General;
-const { FormRow, FormSection, FormArrow, FormDivider } = Forms;
+const { FormRow, FormSection, FormDivider } = Forms;
 
 const styles = StyleSheet.createThemedStyleSheet({
 	input: {
@@ -48,14 +49,7 @@ export default function Settings() {
 		<ScrollView>
 			<FormSection title="Rules">
 				{rules.map((rule, index) => <>
-					<FormRow
-						label={rule.name}
-						trailing={<FormArrow />}
-						onPress={() => navigation.push("VendettaCustomPage", {
-							title: "Editing Rule",
-							render: () => <EditRule ruleIndex={index} />
-						})}
-					/>
+					<RuleRow rule={rule} index={index} />
 					<FormDivider />
 				</>)}
 				<FormRow
