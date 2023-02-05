@@ -4,7 +4,7 @@ import { Forms, General } from "@vendetta/ui/components";
 import { Rule } from "../../def";
 
 const { ScrollView } = General;
-const { FormInput } = Forms;
+const { FormSection, FormInput, FormDivider } = Forms;
 
 export default function EditRule({ ruleIndex }) {
 	let rule = storage.rules[ruleIndex] as Rule;
@@ -12,24 +12,28 @@ export default function EditRule({ ruleIndex }) {
 
 	return (
 		<ScrollView>
-			<FormInput
-				value={rule.name}
-				onChange={(v: string) => rule.name = v}
-				placeholder="New rule"
-				title="Name"
-			/>
-			<FormInput
-				value={rule.match}
-				onChange={(v: string) => rule.match = v}
-				placeholder="foo"
-				title="Match"
-			/>
-			<FormInput
-				value={rule.replace}
-				onChange={(v: string) => rule.replace = v}
-				placeholder="bar"
-				title="Replace with"
-			/>
+			<FormSection>
+				<FormInput
+					value={rule.name}
+					onChange={(v: string) => rule.name = v}
+					placeholder="New rule"
+					title="Name"
+				/>
+				<FormDivider />
+				<FormInput
+					value={rule.match}
+					onChange={(v: string) => rule.match = v}
+					placeholder="foo"
+					title="Match"
+				/>
+				<FormDivider />
+				<FormInput
+					value={rule.replace}
+					onChange={(v: string) => rule.replace = v}
+					placeholder="bar"
+					title="Replace with"
+				/>
+			</FormSection>
 		</ScrollView>
 	);
 };
