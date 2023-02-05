@@ -11,7 +11,7 @@ const Add = getAssetIDByName("ic_add_24px");
 export default function AddRuleButton({ onPress }) {
     return (
         <TouchableOpacity onPress={onPress}>
-            <Icon source={Add} />
+            <Icon source={Add} style={{ marginRight: -8, marginLeft: 8 }} />
         </TouchableOpacity>
     );
 };
