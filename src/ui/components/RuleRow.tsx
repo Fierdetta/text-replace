@@ -6,7 +6,7 @@ import { Forms, General } from "@vendetta/ui/components";
 import EditRule from "../pages/EditRule";
 
 // Components
-const { View, Pressable } = General;
+const { View, TouchableOpacity } = General;
 const { FormRow, FormArrow } = Forms;
 const { Swipeable } = findByProps("Swipeable");
 const { default: Icon } = findByDisplayName("Icon", false);
@@ -22,11 +22,11 @@ export default function RuleRow({ rule, index }) {
 		};
 
 		return (
-			<Pressable onPress={deleteRuleCallback}>
+			<TouchableOpacity onPress={deleteRuleCallback}>
 				<View style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
 					<Icon source={Trash} color={Constants.Colors.STATUS_RED} />
 				</View>
-			</Pressable>
+			</TouchableOpacity>
 		);
 	};
 
