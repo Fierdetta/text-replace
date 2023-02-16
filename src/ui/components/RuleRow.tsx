@@ -24,7 +24,7 @@ export default function RuleRow({ rule, index }) {
 		return (
 			<TouchableOpacity onPress={deleteRuleCallback}>
 				<View style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
-					<Icon source={Trash} color={Constants.Colors.STATUS_RED} />
+					<Icon source={Trash} />
 				</View>
 			</TouchableOpacity>
 		);

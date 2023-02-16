@@ -1,3 +1,4 @@
+import { findByProps } from "@vendetta/metro";
 import { constants as Constants, NavigationNative, React, stylesheet as StyleSheet } from "@vendetta/metro/common";
 import { storage } from "@vendetta/plugin";
 import { useProxy } from "@vendetta/storage";
@@ -11,14 +12,17 @@ import EditRule from "./EditRule";
 const { ScrollView, TextInput } = General;
 const { FormRow, FormSection, FormDivider } = Forms;
 
+const colorModule = findByProps("SemanticColorsByThemeTable");
+const colorMap = (colorModule?.SemanticColor ?? Constants.ThemeColorMap);
+
 const styles = StyleSheet.createThemedStyleSheet({
 	input: {
 		fontSize: 16,
 		fontFamily: Constants.Fonts.PRIMARY_MEDIUM,
-		color: StyleSheet.ThemeColorMap.TEXT_NORMAL
+		color: colorMap.TEXT_NORMAL
 	},
 	placeholder: {
-		color: StyleSheet.ThemeColorMap.INPUT_PLACEHOLDER_TEXT
+		color: colorMap.INPUT_PLACEHOLDER_TEXT
 	}
 })
 
