@@ -1,4 +1,5 @@
-import { clipboard as Clipboard } from "@vendetta/metro/common";
+import { findByProps } from "@vendetta/metro";
+import { constants as Constants, clipboard as Clipboard, NavigationNative } from "@vendetta/metro/common";
 import { storage } from "@vendetta/plugin";
 import { useProxy } from "@vendetta/storage";
 import { getAssetIDByName } from "@vendetta/ui/assets";
@@ -8,14 +9,19 @@ import { Rule } from "../../def";
 
 // Components
 const { ScrollView } = General;
-const { FormSection, FormInput, FormDivider, FormSwitchRow, FormRow } = Forms;
+const { FormSection, FormInput, FormDivider, FormSwitchRow, FormRow, FormLabel } = Forms;
 
 const MessageCopy = getAssetIDByName("ic_message_copy");
+
+const colorModule = findByProps("SemanticColorsByThemeTable");
+const colors = (colorModule?.RawColor ?? Constants.Colors);
 
 export default function EditRule({ ruleIndex }) {
 	let rule = storage.rules[ruleIndex] as Rule;
 	useProxy(storage);
 
+	const navigation = NavigationNative.useNavigation();
+	
 	const copyCodeBlockCallback = () => {
 		const ruleJson = JSON.stringify(rule, null, 4);
 		const ruleCodeBlock = `\`\`\`json\n${ruleJson}\n\`\`\``;
@@ -23,11 +29,16 @@ export default function EditRule({ ruleIndex }) {
 		showToast(`Copied ${rule.name} to Clipboard`, MessageCopy);
 	};
 
+	const deleteRuleCallback = () => {
+		storage.rules.splice(ruleIndex, 1);
+		navigation.pop()
+	}
+
 	return (
 		<ScrollView>
 			<FormSection>
 				<FormInput
-					value={rule.name}
+					value={rule?.name}
 					onChange={(v: string) => rule.name = v}
 					placeholder="New rule"
 					title="Name"
@@ -35,23 +46,23 @@ export default function EditRule({ ruleIndex }) {
 			</FormSection>
 			<FormSection>
 				<FormInput
-					value={rule.match}
+					value={rule?.match}
 					onChange={(v: string) => rule.match = v}
 					placeholder="foo"
 					title="Match"
 				/>
-				{rule.regex && <>
+				{rule?.regex && <>
 					<FormDivider />
 					<FormInput
 						title="Flags"
 						placeholder="gi"
-						value={rule.flags}
+						value={rule?.flags}
 						onChange={(v: string) => rule.flags = v}
 					/>
 				</>}
 				<FormDivider />
 				<FormInput
-					value={rule.replace}
+					value={rule?.replace}
 					onChange={(v: string) => rule.replace = v}
 					placeholder="bar"
 					title="Replace with"
@@ -61,12 +72,15 @@ export default function EditRule({ ruleIndex }) {
 				<FormSwitchRow
 					label="Regular expression"
 					subLabel="Turn on if your rule is a regular expression"
-					value={rule.regex}
+					value={rule?.regex}
 					onValueChange={(v: boolean) => rule.regex = v}
 				/>
 			</FormSection>
 			<FormSection>
 				<FormRow label="Copy code block to Clipboard" onPress={copyCodeBlockCallback} />
+			</FormSection>
+			<FormSection>
+				<FormRow label={<FormLabel text="Delete Rule" style={{color: colors.STATUS_RED_500}} />} onPress={deleteRuleCallback} />
 			</FormSection>
 		</ScrollView>
 	);
