@@ -1,7 +1,7 @@
-import { findByProps } from "@vendetta/metro";
-import { constants as Constants, clipboard as Clipboard, NavigationNative } from "@vendetta/metro/common";
+import { stylesheet as StyleSheet, clipboard as Clipboard, NavigationNative } from "@vendetta/metro/common";
 import { storage } from "@vendetta/plugin";
 import { useProxy } from "@vendetta/storage";
+import { rawColors } from "@vendetta/ui";
 import { getAssetIDByName } from "@vendetta/ui/assets";
 import { Forms, General } from "@vendetta/ui/components";
 import { showToast } from "@vendetta/ui/toasts";
@@ -13,8 +13,11 @@ const { FormSection, FormInput, FormDivider, FormSwitchRow, FormRow, FormLabel }
 
 const MessageCopy = getAssetIDByName("ic_message_copy");
 
-const colorModule = findByProps("SemanticColorsByThemeTable");
-const colors = (colorModule?.RawColor ?? Constants.Colors);
+const styles = StyleSheet.createThemedStyleSheet({
+	delete: {
+		color: rawColors.RED_400
+	}
+})
 
 export default function EditRule({ ruleIndex }) {
 	let rule = storage.rules[ruleIndex] as Rule;
@@ -80,7 +83,7 @@ export default function EditRule({ ruleIndex }) {
 				<FormRow label="Copy code block to Clipboard" onPress={copyCodeBlockCallback} />
 			</FormSection>
 			<FormSection>
-				<FormRow label={<FormLabel text="Delete Rule" style={{color: colors.STATUS_RED_500}} />} onPress={deleteRuleCallback} />
+				<FormRow label={<FormLabel text="Delete Rule" style={styles.delete} />} onPress={deleteRuleCallback} />
 			</FormSection>
 		</ScrollView>
 	);
