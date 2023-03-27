@@ -1,4 +1,4 @@
-import { findByDisplayName, findByProps } from "@vendetta/metro";
+import { findByName } from "@vendetta/metro";
 import { constants as Constants, NavigationNative, React, stylesheet as StyleSheet } from "@vendetta/metro/common";
 import { storage } from "@vendetta/plugin";
 import { useProxy } from "@vendetta/storage";
@@ -24,7 +24,7 @@ const styles = StyleSheet.createThemedStyleSheet({
 	}
 })
 
-const useIsFocused = findByDisplayName("useIsFocused");
+const useIsFocused = findByName("useIsFocused");
 
 export default function Settings() {
 	const [newRule, setNewRule] = React.useState("")
