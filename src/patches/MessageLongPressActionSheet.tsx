@@ -1,4 +1,4 @@
-import { findByProps } from "@vendetta/metro";
+import { findByProps, findByName } from "@vendetta/metro";
 import { React } from "@vendetta/metro/common";
 import { after, before } from "@vendetta/patcher";
 import { storage } from "@vendetta/plugin";
@@ -9,7 +9,8 @@ import { showToast } from "@vendetta/ui/toasts";
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 // Components
-const { FormRow: { default: FormRow, Icon } } = Forms;
+const { FormRow } = Forms;
+const Icon = findByName("Icon");
 
 const JSON_CODEBLOCK_PATTERN = /^```(?:json)\n([\s\S]*?)```$/gm
 

@@ -1,9 +1,10 @@
-import { Forms, General } from "@vendetta/ui/components";
+import { General } from "@vendetta/ui/components";
 import { getAssetIDByName } from "@vendetta/ui/assets";
+import { findByName } from "@vendetta/metro";
 
 // Components
 const { TouchableOpacity } = General;
-const { FormRow: { Icon } } = Forms;
+const Icon = findByName("Icon");
 
 const Add = getAssetIDByName("ic_add_24px");
 
