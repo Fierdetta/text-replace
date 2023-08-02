@@ -9,8 +9,7 @@ import { showToast } from "@vendetta/ui/toasts";
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
 
 // Components
-const { FormRow } = Forms;
-const Icon = findByName("Icon");
+const { FormRow, FormIcon } = Forms;
 
 const JSON_CODEBLOCK_PATTERN = /^```(?:json)\n([\s\S]*?)```$/gm
 
@@ -56,7 +55,7 @@ export default function patchMessageLongPressActionSheet() {
 					};
 
 					const importRuleButton = (<FormRow
-						leading={<Icon source={Download} />}
+						leading={<FormIcon style={{ opacity: 1 }} source={Download} />}
 						label={`Import ${rule.name}`}
 						onPress={importRuleCallback}
 					/>);
