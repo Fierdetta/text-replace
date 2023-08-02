@@ -1,7 +1,5 @@
-import { General } from "@vendetta/ui/components";
+import { General, Forms } from "@vendetta/ui/components";
 import { getAssetIDByName } from "@vendetta/ui/assets";
-import { Forms } from "@vendetta/ui/components";
-import { findByName } from "@vendetta/metro";
 
 // Components
 const { TouchableOpacity } = General;
