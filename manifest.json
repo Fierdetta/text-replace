@@ -1,10 +1,15 @@
 {
-    "name": "Text Replace",
-    "description": "Generic text replacement plugin",
+    "name": "Text Replace Sync",
+    "description": "Generic text replacement plugin with settings sync",
     "authors": [
         {
             "name": "Fiery",
             "id": "890228870559698955"
+        },
+
+        {
+            "name": "hendrik3812",
+            "id": "286208399786377216"
         }
     ],
     "main": "src/index.ts",

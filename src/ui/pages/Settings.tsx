@@ -73,6 +73,11 @@ export default function Settings() {
 					trailing={<AddRuleButton onPress={addRuleCallback} />}
 				/>
 			</FormSection>
+			<FormSection title="Sync Vencord TextReplace Rules">
+				<FormRow
+					label="HeLau1337's vendetta-text-replace"
+				/>
+			</FormSection>
 		</ScrollView>
 	);
 };
