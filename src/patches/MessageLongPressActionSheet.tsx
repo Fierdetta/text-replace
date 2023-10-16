@@ -3,13 +3,12 @@ import { React } from "@vendetta/metro/common";
 import { after, before } from "@vendetta/patcher";
 import { storage } from "@vendetta/plugin";
 import { getAssetIDByName } from "@vendetta/ui/assets";
-import { Forms } from "@vendetta/ui/components";
 import { showToast } from "@vendetta/ui/toasts";
+import { findInReactTree } from "@vendetta/utils";
+
+import { RedesignRow } from "@nexpid/vdp-shared";
 
 const LazyActionSheet = findByProps("openLazy", "hideActionSheet");
-
-// Components
-const { FormRow, FormIcon } = Forms;
 
 const JSON_CODEBLOCK_PATTERN = /^```(?:json)\n([\s\S]*?)```$/gm
 
@@ -45,7 +44,11 @@ export default function patchMessageLongPressActionSheet() {
 				// Don't add anything if we have no importable rules
 				if (!rules || rules.length == 0) return;
 
-				let buttons = res?.props?.children?.props?.children?.props?.children[1];
+				const buttons = findInReactTree(
+					res,
+					(x) => x?.[0]?.type?.name === "ButtonRow"
+				);
+				if (!buttons) return;
 
 				for (const rule of rules) {
 					const importRuleCallback = () => {
@@ -54,8 +57,8 @@ export default function patchMessageLongPressActionSheet() {
 						LazyActionSheet.hideActionSheet();
 					};
 
-					const importRuleButton = (<FormRow
-						leading={<FormIcon style={{ opacity: 1 }} source={Download} />}
+					const importRuleButton = (<RedesignRow
+						icon={Download}
 						label={`Import ${rule.name}`}
 						onPress={importRuleCallback}
 					/>);
